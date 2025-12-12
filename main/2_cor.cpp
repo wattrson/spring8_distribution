@@ -15,8 +15,8 @@ std::string filename_180deg = "stitched_image_4500_992x1314";
 
 int width  = 992;
 int height = 1314;
-float max_shift = 0.1f * width; // 最大シフト量を画像幅の20%に設定
-float step_size = 0.1f;
+float max_shift = 0.1f * width; // 最大シフト量を画像幅に対する割合で設定
+float step_size = 0.1f; // シフト量のステップサイズ[pixel]
 //! --- パラメータ設定ここまで ---
 
 int main() {

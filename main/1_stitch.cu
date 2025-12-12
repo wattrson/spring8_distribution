@@ -20,7 +20,6 @@
 #include "stitch.h"
 
 //! ===========================================================================
-
 //* ---ファイル入出力設定---
 std::string              data_dir      = "H:/JIMACTchart_20251205/";
 bool                     I0_retraction = true; // I0を固定位置で撮ったかどうか
@@ -32,14 +31,14 @@ std::vector<std::string> exclude_keywords = {/*"x000", "x019"*/};
 // 画素サイズの初期値(mm/pixel)
 float pixel_size_mm =
     // 6.5f / 4.f * 0.001f;
-    // // 6.5um[pixel]、4倍対物レンズ、ビニングなし、18keVは12/2以前に撮ったもの
+// 6.5um[pixel]、4倍対物レンズ、ビニングなし、18keVは12/2以前に撮ったもの
     6.5f / 2.f * 0.001f;
-// // 6.5um[pixel]、2倍対物レンズ、ビニングなし、18keVは12/3以降に撮ったもの
-// 6.5f / 2.f * 2.f * 0.001f; // 6.5um[pixel]、2倍対物レンズ, ビニング2 //with
-// mirror, iPhone AppleWatch
+// 6.5um[pixel]、2倍対物レンズ、ビニングなし、18keVは12/3以降に撮ったもの
+    // 6.5f / 2.f * 2.f * 0.001f;
+// 6.5um[pixel]、2倍対物レンズ, ビニング2 with mirror, iPhone AppleWatch
 //! metaに"pixel_size_um"があればそちらを優先
 
-// ROI設定
+// ROI設定 //! 0_check_roi.cuで確認してから設定すること
 const int ROI_X      = 16;
 const int ROI_Y      = 72;
 const int ROI_WIDTH  = 992;
@@ -47,20 +46,15 @@ const int ROI_HEIGHT = 390;
 
 // さらにビニングする(データが大きすぎる)場合
 const int BINNING = 1; //! ROI_WIDTH,HEIGHTはBINNINGで割り切れる値にすること
-
-// 回転軸探索パラメータ
-float step_size        = 1.f;  // COR探索のステップサイズ[ピクセル]
-float max_shift_factor = 0.3f; // Explore up to 30% of the image width's shift
-
 //* ---パラメータ設定ここまで---
 
-//! ===========================================================================
-
-std::string i0_dir = data_dir; // I0画像のディレクトリ
-
+//* ---以降適宜変更---
 std::string save_stitched_dir = data_dir + "stitched/";
 std::string save_voxel_dir    = data_dir;
 size_t      max_num_i0        = 100; // 最大で使用するI0画像の枚数
+//! ===========================================================================
+
+std::string i0_dir = data_dir; // I0画像のディレクトリ
 
 using namespace H5;
 namespace fs = std::filesystem;

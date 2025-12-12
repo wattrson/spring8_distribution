@@ -22,26 +22,26 @@
 #include "stitch.h"
 
 //! ===========================================================================
-
 //* ---ファイル入出力設定---
-std::string              data_dir      = "D:/IRsensor_20251204/";
-bool                     I0_retraction = false; // I0を固定位置で撮ったかどうか
-std::string              I0_filename   = "IRsensor_20251204_062454_x001_y001_CW"; // I0のファイル名
-std::vector<std::string> exclude_keywords = {"y001"/*"x000", "x019"*/};
+std::string data_dir      = "D:/IRsensor_20251204/";
+bool        I0_retraction = false; // I0を固定位置で撮ったかどうか
+std::string I0_filename =
+    "IRsensor_20251204_062454_x001_y001_CW"; // I0のファイル名
+std::vector<std::string> exclude_keywords = {"y001" /*"x000", "x019"*/};
 //* ---ファイル入出力設定ここまで---
 
 //* ---パラメータ設定---
 // 画素サイズの初期値(mm/pixel)
 float pixel_size_mm =
     // 6.5f / 4.f * 0.001f;
-    // // 6.5um[pixel]、4倍対物レンズ、ビニングなし、18keVは12/2以前に撮ったもの
+// 6.5um[pixel]、4倍対物レンズ、ビニングなし、18keVは12/2以前に撮ったもの
     6.5f / 2.f * 0.001f;
-// // 6.5um[pixel]、2倍対物レンズ、ビニングなし、18keVは12/3以降に撮ったもの
-// 6.5f / 2.f * 2.f * 0.001f; // 6.5um[pixel]、2倍対物レンズ, ビニング2 //with
-// mirror, iPhone AppleWatch
+// 6.5um[pixel]、2倍対物レンズ、ビニングなし、18keVは12/3以降に撮ったもの
+    // 6.5f / 2.f * 2.f * 0.001f;
+// 6.5um[pixel]、2倍対物レンズ, ビニング2 with mirror, iPhone AppleWatch
 //! metaに"pixel_size_um"があればそちらを優先
 
-// ROI設定
+// ROI設定 //! 0_check_roi.cuで確認した値を入れること
 const int ROI_X      = 276;
 const int ROI_Y      = 150;
 const int ROI_WIDTH  = 1113;
@@ -51,55 +51,20 @@ const int ROI_HEIGHT = 1650;
 const int BINNING = 1; //! ROI_WIDTH,HEIGHTはBINNINGで割り切れる値にすること
 
 // 回転軸探索パラメータ
-float step_size        = 1.f;  // COR探索のステップサイズ[ピクセル]
-float max_shift_factor = 0.2f; // Explore up to 30% of the image width's shift
-
+float step_size        = 0.1f;  // COR探索のステップサイズ[ピクセル]
+float max_shift_factor = 0.2f; // Explore up to 20% of the image width's shift
 //* ---パラメータ設定ここまで---
 
+//* ---以降適宜変更---
+std::string save_stitched_dir = data_dir + "stitched/";
+std::string save_voxel_dir    = data_dir;
+size_t      max_num_i0        = 100; // 最大で使用するI0画像の枚数
 //! ===========================================================================
 
 std::string i0_dir = data_dir; // I0画像のディレクトリ
 
-std::string save_stitched_dir = data_dir + "stitched/";
-std::string save_voxel_dir    = data_dir;
-size_t      max_num_i0        = 100; // 最大で使用するI0画像の枚数
-
 using namespace H5;
 namespace fs = std::filesystem;
-
-// std::vector<H5std_string>
-// getH5FileList(const std::string              &dir_path,
-//               const std::vector<std::string> &exclude_keywords) {
-//     std::vector<H5std_string> file_list;
-//     if (!fs::exists(dir_path) || !fs::is_directory(dir_path)) {
-//         std::cerr << "Directory does not exist: " << dir_path << std::endl;
-//         return file_list;
-//     }
-
-//     for (const auto &entry : fs::directory_iterator(dir_path)) {
-//         if (entry.is_regular_file()) {
-//             std::string filename  = entry.path().filename().string();
-//             std::string extension = entry.path().extension().string();
-
-//             if (extension == ".h5") {
-//                 // if (filename.find(exclude_keyword) == std::string::npos) {
-//                 //     file_list.push_back(entry.path().string());
-//                 // }
-//                 bool exclude = false;
-//                 for (const auto &keyword : exclude_keywords) {
-//                     if (filename.find(keyword) != std::string::npos) {
-//                         exclude = true;
-//                         break;
-//                     }
-//                 }
-//                 if (!exclude) {
-//                     file_list.push_back(entry.path().string());
-//                 }
-//             }
-//         }
-//     }
-//     return file_list;
-// }
 
 int main() {
     clock_t start, end;

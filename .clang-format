@@ -1,0 +1,30 @@
+---
+BasedOnStyle: LLVM
+AccessModifierOffset: '-2'
+AlignConsecutiveAssignments: 'true'
+AlignConsecutiveDeclarations: 'true'
+AlignEscapedNewlines: Left
+AlignTrailingComments: 'true'
+AllowShortIfStatementsOnASingleLine: Never
+BreakBeforeBraces: Attach
+DerivePointerAlignment: 'true'
+FixNamespaceComments: 'true'
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex:           '^<H5.*>'
+    Priority:         3
+  - Regex:           '^<sys/.*>'
+    Priority:        1
+  - Regex:           '^<[a-z0-9_]+\.h>'
+    Priority:        1
+  - Regex:           '^<[^.]+>'
+    Priority:        2
+  - Regex:           '^<.*>'
+    Priority:        3
+  - Regex:           '".*"'
+    Priority:        4
+IndentWidth: '4'
+Language: Cpp
+NamespaceIndentation: None
+
+...

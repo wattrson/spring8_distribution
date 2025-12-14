@@ -9,13 +9,13 @@
 #include "file_io.h"
 
 //! --- パラメータ設定ここから ---
-std::string data_dir        = "D:/JIMACTchart_20251205/stitched/";
-std::string filename_0deg   = "stitched_image_0000_992x1314";
-std::string filename_180deg = "stitched_image_4500_992x1314";
+std::string data_dir        = "D:/IRsensor_20251204/stitched/";
+std::string filename_0deg   = "stitched_image_0000_1729x1650";
+std::string filename_180deg = "stitched_image_2250_1729x1650";
 
-int width  = 992;
-int height = 1314;
-float max_shift = 0.1f * width; // 最大シフト量を画像幅に対する割合で設定
+int width  = 1729;
+int height = 1650;
+float max_shift = 0.2f * width; // 最大シフト量を画像幅に対する割合で設定
 float step_size = 0.1f; // シフト量のステップサイズ[pixel]
 //! --- パラメータ設定ここまで ---
 

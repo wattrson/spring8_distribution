@@ -21,9 +21,9 @@
 
 //! ===========================================================================
 //* ---ファイル入出力設定---
-std::string              data_dir      = "H:/JIMACTchart_20251205/";
+std::string              data_dir      = "D:/EuroChart_20251205/";
 bool                     I0_retraction = true; // I0を固定位置で撮ったかどうか
-std::string              I0_filename   = "I0_20251205_095315"; // I0のファイル名
+std::string              I0_filename   = "I0_20251205_044122"; // I0のファイル名
 std::vector<std::string> exclude_keywords = {/*"x000", "x019"*/};
 //* ---ファイル入出力設定ここまで---
 
@@ -39,10 +39,10 @@ float pixel_size_mm =
 //! metaに"pixel_size_um"があればそちらを優先
 
 // ROI設定 //! 0_check_roi.cuで確認してから設定すること
-const int ROI_X      = 16;
-const int ROI_Y      = 72;
-const int ROI_WIDTH  = 992;
-const int ROI_HEIGHT = 390;
+const int ROI_X      = 30;
+const int ROI_Y      = 67;
+const int ROI_WIDTH  = 904;
+const int ROI_HEIGHT = 376;
 
 // さらにビニングする(データが大きすぎる)場合
 const int BINNING = 1; //! ROI_WIDTH,HEIGHTはBINNINGで割り切れる値にすること

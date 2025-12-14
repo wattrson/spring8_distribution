@@ -15,11 +15,11 @@
 
 //! ===========================================================================
 //* ---ファイル入出力設定---
-std::string data_dir      = "D:/IRsensor_20251204/";
-bool        I0_retraction = false; // I0を固定位置で撮ったかどうか
-std::string I0_filename   = "IRsensor_20251204_062454_x001_y001_CW"; // I0のファイル名
+std::string data_dir      = "D:/EuroChart_20251205/";
+bool        I0_retraction = true; // I0を固定位置で撮ったかどうか
+std::string I0_filename   = "I0_20251205_044122"; // I0のファイル名
 std::string image_filename =
-    "IRsensor_20251204_062207_x000_y000_CW"; // ROIを設定するための代表ファイル
+    "EuroChart_20251205_044146_x000_y001_CCW"; // ROIを設定するための代表ファイル
 //* ---ファイル入出力設定ここまで---
 
 //* ---以降適宜変更--

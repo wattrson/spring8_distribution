@@ -33,7 +33,7 @@ Distribution version for stitching, center of rotation correction, and reconstru
 
 ### CMakeのインストール
 
-- [こちらから](https://cmake.org/download/)最新版を入れておけば問題ない
+- [こちらから](https://cmake.org/download/)最新版を入れておけば問題ない  
   <img src= "images/image20251211-184103.png" alt= "" width="50%">  
 
 (すでに入っている場合も3.31以降なら確実に動くはず)

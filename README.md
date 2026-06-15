@@ -8,6 +8,7 @@ Distribution version for stitching, center of rotation correction, and reconstru
 - MSVC(Visual StudioのC/C++用コンパイラ)
 - CMake
 - HDF5
+- OpenCV
 - CUDA Toolkit
 
 ### Visual Studio Code
@@ -51,7 +52,7 @@ Distribution version for stitching, center of rotation correction, and reconstru
   - VS Codeを開いて`ctrl + ,`でSettingsを開いて, 下の画像の黄矢印部をクリックして settings.jsonを開く.  
     <img src= "images/image20251211-193358.png" alt= "" width="100%">  
 
-  - settings.jsonに以下を追加(2.0.0なら同じはず).
+  - settings.jsonに以下を追加(2.0.0なら同じはず). **2.0.0ではなくて最新のものを入れないとエラーになると思われる.**
     ```settings.json
     "cmake.configureSettings": {
         "CMAKE_PREFIX_PATH": [
@@ -60,7 +61,11 @@ Distribution version for stitching, center of rotation correction, and reconstru
     },
     ```
     他の設定もあると思うので, 自分のsettings.jsonは以下のような感じ.
-    <img src= "images/image20251211-194931.png" alt= "" width="100%">  
+    <img src= "images/image20251211-194931.png" alt= "" width="100%">
+  
+### OpenCVのインストール
+
+- [こちらから](https://opencv.org/releases/)Windows向けにインストール. HDF5同様にPATHの追加とCMAKE_PREFIX_PATHの設定をする.
 
 ### CUDA Toolkitのインストール
 
@@ -76,6 +81,7 @@ Distribution version for stitching, center of rotation correction, and reconstru
     <img src= "images/image20251211-200659.png" alt= "" width="100%">  
 
   - ダウンロードできたら, 開いてデフォルト設定のままインストール.
+- [こちらから](https://developer.nvidia.com/cuda/gpus)自分のGPUのCompute Capabilityを確認して`CMakeLists.txt`の`set(CMAKE_CUDA_ARCHITECTURES ...)`になかったら追加する. (86 &rarr; 8.6, 120 &rarr; 12.0に対応)
 
 ## 使い方
 
